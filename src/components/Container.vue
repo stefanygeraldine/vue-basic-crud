@@ -1,10 +1,10 @@
 <template>
   <div class="container mx-auto">
-    <div class="flex">
-      <div class="spacing">
+    <div class="flex p-4 sm:flex-col md:flex-row">
+      <div class="p-4 box-border sm:w-full md:w-96">
         <Form :agregar="agregar"></Form>
       </div>
-      <div class="spacing" style="width: 100%" >
+      <div class="box-border" style="width: 100%" >
         <List :lista="lista" :eliminar="eliminar"></List>
       </div>
     </div>
@@ -33,32 +33,34 @@ export default {
   ),
   methods: {
     listarElementos: function(){
-      const datos = firebase.database().ref("pasatiempos");
+      const datos = firebase.database().ref("vue-store");
       datos.on("value", (snapshot)=> {
         this.lista = []
         snapshot.forEach((childSnapshot)=>{
           const childData = childSnapshot.val();
+          if(childData.imageUrl === '' || childData.imageUrl.slice(0,4) !== 'http'){
+            childData.imageUrl = 'https://nightgalaxy.sellware.net/img/Noimage.jpg?nocache=1602679288287'
+          }
           this.lista.push(childData);
         });
       });
     },
 
-    agregar:function(clave, titulo, descripcion){
-      const item = {clave, titulo, descripcion}
-      //this.lista.push(item)
-      firebase.database().ref("pasatiempos/"+clave).set(item);
+    agregar:function(clave, nombre, descripcion, imageUrl, precio){
+      const item = {clave, nombre, descripcion, imageUrl, precio}
+      firebase.database().ref("vue-store/"+clave).set(item);
     },
 
     eliminar: function(clave) {
-
       const index = this.lista.map(function(obj){
         return obj.clave;
       }).indexOf(clave);
 
       this.lista.splice(index,1);
-      firebase.database().ref("pasatiempos/"+clave).remove();
+      firebase.database().ref("vue-store/"+clave).remove();
     }
   },
+
   created: function() {
     this.listarElementos();
   }

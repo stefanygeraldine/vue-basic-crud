@@ -1,31 +1,28 @@
 <template>
   <div class="flex items-center justify-center card card-form">
-    <h2 class="card-description">
+    <h2 class="card-description" style="color: #ffffff">
       Crear Nuevo Producto
     </h2>
       <form class="" action="#" method="POST">
 
         <div class="">
           <div>
-            <label for="clave" class="sr-only">Clave</label>
-            <input id="clave" v-model="clave" name="email" type="text" autocomplete="email"  class="form-control search-input border" placeholder="Clave">
+            <input id="nombre" v-model="nombre" type="text" autocomplete="email"  class="form-control search-input border" placeholder="Nombre">
           </div>
           <div>
-            <label for="titulo" class="sr-only">Password</label>
-            <input id="titulo" v-model="titulo" type="text" autocomplete="current-password" required class="form-control search-input border"  placeholder="Titulo">
+            <input id="descripcion" v-model="descripcion" type="text" autocomplete="current-password" required class="form-control search-input border"  placeholder="Descripción">
           </div>
           <div>
-            <label for="descripcion" class="sr-only">Password</label>
-            <input id="descripcion" v-model="descripcion" type="text" autocomplete="current-password" required class="form-control search-input border" placeholder="Descripcion">
+            <input id="precio" v-model="precio" type="text" autocomplete="current-password" required class="form-control search-input border" placeholder="Precio">
+          </div>
+          <div>
+            <input id="imageUrl" v-model="imageUrl" type="text" autocomplete="current-password" required class="form-control search-input border" placeholder="Imagen URL">
           </div>
         </div>
 
 
-
         <div style="padding: 10px">
-          <button v-on:click.prevent="agregar(clave,titulo,descripcion)" type="submit" class="card-view">
-            Crear
-          </button>
+          <Button title="Crear" :onClick="addProduct"></Button>
         </div>
       </form>
 
@@ -35,18 +32,29 @@
 <script>
 
 
+import Button from './ui/Button'
+import { v4 as uuidv4 } from 'uuid';
+
+
 export default {
   name: 'Form',
   props:{
     agregar:Function
   },
+  components:{Button},
   data:()=>(
       {
-        clave:'123',
-        titulo:'test',
-        descripcion: 'test test'
+        nombre:'',
+        descripcion: '',
+        imageUrl:'',
+        precio:''
       }
   ),
+  methods:{
+    addProduct:function (){
+      this.agregar(uuidv4(),this.nombre,this.descripcion, this.imageUrl, this.precio)
+    }
+  }
 
 
 

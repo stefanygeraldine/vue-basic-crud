@@ -1,30 +1,47 @@
 <template>
-  <li class="card" style="width: 30%">
+  <li class=" md:w-1/3 sm:w-full p-4">
+    <Card style="padding: 0">
     <div class="card-header">
-      <div class="card-title">{{item.titulo}}</div>
-      <button v-on:click.prevent="eliminar(item.clave)" class="card-close">
+      <div class="card-title">{{item.nombre}}</div>
+      <ButtonSquare :data="item" :onClick="deleteProduct" bg="#f47477">
         <i class="fa fa-close"></i>
-      </button>
+      </ButtonSquare>
     </div>
     <div class="card-body">
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-MF42cjyNBSFVEQw5ISrC_seFYiQ0M_3wcA&usqp=CAU">
+      <img :src="item.imageUrl " style="max-width: 173px; height: 205px;">
      <h2 class="card-description">
-       {{item.clave}} - : {{item.descripcion}}
+       {{item.precio}}
      </h2>
     </div>
     <div class="card-footer">
-      <button class="card-view">View</button>
+      <Button title="View"></Button>
     </div>
+    </Card>
   </li>
 </template>
 
 <script>
+
+import Card from './ui/Card'
+import ButtonSquare from './ui/ButtonSquare'
+import Button from './ui/Button'
+
 
 export default {
   name: 'ListItem',
   props: {
     item: Object,
     eliminar:Function,
+  },
+  components: {
+    Card,
+    ButtonSquare,
+    Button
+  },
+  methods:{
+    deleteProduct:function (data){
+      this.eliminar(data.clave)
+    }
   }
 }
 </script>
