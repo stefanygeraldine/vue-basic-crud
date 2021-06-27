@@ -3,7 +3,7 @@
     <h2 class="card-description" style="color: #ffffff">
       Crear Nuevo Producto
     </h2>
-      <form class="" action="#" method="POST">
+      <form class="text-center" action="#" method="POST">
 
         <div class="">
           <div>
@@ -21,9 +21,8 @@
         </div>
 
 
-        <div style="padding: 10px">
           <Button title="Crear" :onClick="addProduct"></Button>
-        </div>
+
       </form>
 
   </div>
