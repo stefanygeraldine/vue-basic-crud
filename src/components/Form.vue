@@ -3,55 +3,53 @@
     <h2 class="card-description" style="color: #ffffff">
       Crear Nuevo Producto
     </h2>
-      <form class="text-center" action="#" method="POST">
+    <form class="text-center" action="#" method="POST">
 
-        <div class="">
-          <div>
-            <input
-                id="nombre"
-                type="text"
-                placeholder="Nombre"
-                class="form-control search-input border"
-                v-model="nombre"
-                v-on:keypress="onChangeDataFrom"
-            >
-          </div>
-          <div>
-            <input
-                id="descripcion"
-                type="text"
-                placeholder="Descripción"
-                class="form-control search-input border"
-                v-model="descripcion"
-                v-on:keypress="onChangeDataFrom"
-            >
-          </div>
-          <div>
-            <input
-                id="precio"
-                type="text"
-                placeholder="Precio"
-                class="form-control search-input border"
-                v-model="precio"
-                v-on:keypress="onChangeDataFrom"
-            >
-          </div>
-          <div>
-            <input
-                id="imageUrl"
-                type="text"
-                placeholder="Imagen URL"
-                class="form-control search-input border"
-                v-model="imageUrl"
-            >
-          </div>
-          <p>{{message}}</p>
-        </div>
+      <div class="my-4">
+
+        <input
+            id="nombre"
+            type="text"
+            placeholder="Nombre"
+            class="form-control search-input border"
+            v-model="nombre"
+            v-on:keypress="onChangeDataFrom"
+        >
 
 
-          <Button title="Crear" :onClick="addProduct"></Button>
+        <input
+            id="precio"
+            type="text"
+            placeholder="Precio"
+            class="form-control search-input border"
+            v-model="precio"
+            v-on:keypress="onChangeDataFrom"
+        >
 
-      </form>
+        <input
+            id="imageUrl"
+            type="text"
+            placeholder="Imagen URL"
+            class="form-control search-input border"
+            v-model="imageUrl"
+        >
+
+
+        <textarea
+            class="h-24"
+            v-model="descripcion"
+            placeholder="Descripcion"
+            v-on:keypress="onChangeDataFrom"
+        />
+      </div>
+      <div>
+        <p>{{message}}</p>
+      </div>
+
+
+      <Button title="Crear" :onClick="addProduct"></Button>
+
+    </form>
 
   </div>
 </template>
