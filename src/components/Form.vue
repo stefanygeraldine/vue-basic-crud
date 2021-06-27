@@ -1,5 +1,5 @@
 <template>
-  <div class="flex items-center justify-center card card-form">
+  <div class="flex items-center justify-center card card-form bg-cover">
     <h2 class="card-description" style="color: #ffffff">
       Crear Nuevo Producto
     </h2>
@@ -7,17 +7,45 @@
 
         <div class="">
           <div>
-            <input id="nombre" v-model="nombre" type="text" autocomplete="email"  class="form-control search-input border" placeholder="Nombre">
+            <input
+                id="nombre"
+                type="text"
+                placeholder="Nombre"
+                class="form-control search-input border"
+                v-model="nombre"
+                v-on:keypress="onChangeDataFrom"
+            >
           </div>
           <div>
-            <input id="descripcion" v-model="descripcion" type="text" autocomplete="current-password" required class="form-control search-input border"  placeholder="Descripción">
+            <input
+                id="descripcion"
+                type="text"
+                placeholder="Descripción"
+                class="form-control search-input border"
+                v-model="descripcion"
+                v-on:keypress="onChangeDataFrom"
+            >
           </div>
           <div>
-            <input id="precio" v-model="precio" type="text" autocomplete="current-password" required class="form-control search-input border" placeholder="Precio">
+            <input
+                id="precio"
+                type="text"
+                placeholder="Precio"
+                class="form-control search-input border"
+                v-model="precio"
+                v-on:keypress="onChangeDataFrom"
+            >
           </div>
           <div>
-            <input id="imageUrl" v-model="imageUrl" type="text" autocomplete="current-password" required class="form-control search-input border" placeholder="Imagen URL">
+            <input
+                id="imageUrl"
+                type="text"
+                placeholder="Imagen URL"
+                class="form-control search-input border"
+                v-model="imageUrl"
+            >
           </div>
+          <p>{{message}}</p>
         </div>
 
 
@@ -46,14 +74,24 @@ export default {
         nombre:'',
         descripcion: '',
         imageUrl:'',
-        precio:''
+        precio:'',
+        message:''
       }
   ),
   methods:{
     addProduct:function (){
+      if(this.nombre === '' || this.descripcion === '' || this.precio === ''){
+        this.message = 'Campos requeridos'
+        return false
+      }
+      this.message = ''
       this.agregar(uuidv4(),this.nombre,this.descripcion, this.imageUrl, this.precio)
+    },
+    onChangeDataFrom:function () {
+      this.message = ''
     }
-  }
+  },
+
 
 
 

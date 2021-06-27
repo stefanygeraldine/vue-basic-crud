@@ -6,14 +6,23 @@
         <i class="fa fa-search"></i>
       </ButtonSquare>
     </div>
+    <Modal v-if="item" :onClose="onClose" :data="item"></Modal>
     <ul class="flex" style="flex-wrap: wrap">
-      <LisItem  v-for="(item, key) in listaFiltrada" v-bind:key="key" :item="item" :eliminar="eliminar"></LisItem>
+      <LisItem
+          v-for="(item, key) in listaFiltrada"
+          v-bind:key="key"
+          :item="item"
+          :eliminar="eliminar"
+          :setItem="setItem"
+      ></LisItem>
     </ul>
   </div>
 </template>
+
 <script>
 import LisItem from './ListItem'
 import ButtonSquare from './ui/ButtonSquare'
+import Modal from './ui/Modal'
 
 export default {
   name: 'List',
@@ -24,11 +33,13 @@ export default {
   },
   components: {
     LisItem,
-    ButtonSquare
+    ButtonSquare,
+    Modal
   },
   data: function () {
     return {
       txtBuscar:'',
+      item:null
     }
 
   },
@@ -45,10 +56,18 @@ export default {
 
         );
       }
-      console.log(arreglo)
       return arreglo;
     }
 
+  },
+  methods:{
+    setItem:function (item) {
+      console.log('item', item)
+      this.item = item
+    },
+    onClose:function (){
+      this.item = null
+    }
   }
 
 }

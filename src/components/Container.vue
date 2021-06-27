@@ -1,7 +1,7 @@
 <template>
   <div class="container mx-auto">
-    <div class="flex p-4 sm:flex-col md:flex-row">
-      <div class="p-4 box-border sm:w-full md:w-96">
+    <div class="flex p-4 flex-col md:flex-row">
+      <div class="p-4 box-border w-full  md:w-96">
         <Form :agregar="agregar"></Form>
       </div>
       <div class="box-border" style="width: 100%" >

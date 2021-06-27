@@ -25,6 +25,8 @@
     text-align: left;
     box-shadow: 0px 4px 9px 0px #cfdfe2;
     min-height: 60px;
+    font-family: 'Montserrat', sans-serif;
+    color: #6e7683;
 }
 
 .card-close{
@@ -53,6 +55,7 @@
     color: #f47477;
     font-weight: bold;
     font-size: 20px;
+    text-align: center;
 }
 .card-view{
     background-color: #48cdfb;
